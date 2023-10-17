@@ -1,1 +1,1 @@
-Este app visa procurar por usuarios do github e mostrar seus projetos e seu perfil onde a proposta foi retirada do curso do @DevSamurai onde o projeto era feito em JavaScript mas ultilizei um pouco dos meus conhecimentos para fazer-lo em TypeScript, foi um desafio inovador onde consegui desenvolver muitas habilidades e estou satisfeito com o resultado.
+aplicação React de comecrio de pedidos feito com os estudos do curso de react com typescript do @DevSamurai.
