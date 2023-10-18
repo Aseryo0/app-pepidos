@@ -1,5 +1,6 @@
 import { Head } from '../../../components/Head'
 import { SnackTitle } from '../../../components/SnackTitle'
+import { Snakcs } from '../../../components/Snakcks'
 
 export const Burguers = () => {
   const data = [
@@ -26,6 +27,7 @@ export const Burguers = () => {
     <>
       <Head title={'Hamburguers'} />
       <SnackTitle>Hamburguers</SnackTitle>
+      <Snakcs snakcs={data} />
     </>
   )
 }
