@@ -1,3 +1,4 @@
+import { CurrencyFormat } from '../../helpers/currencyFormat'
 import { Container } from './style'
 
 interface SnacksProps {
@@ -12,7 +13,7 @@ export const Snakcs = ({ snakcs }: SnacksProps) => {
           <img src={snack.image} alt={snack.name} />
           <p>{snack.description}</p>
           <div>
-            <strong>{snack.price}</strong>
+            <strong>{CurrencyFormat(snack.price)}</strong>
             <button type='button'>+</button>
           </div>
         </div>
