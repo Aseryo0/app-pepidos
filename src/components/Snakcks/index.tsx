@@ -1,9 +1,10 @@
 import { CurrencyFormat } from '../../helpers/currencyFormat'
+import { SnackData } from '../../interfaces/SnackData'
 import { SkeletonSnack } from './SkeletonSnack'
 import { Container } from './styles'
 
 interface SnacksProps {
-  snakcs: any[]
+  snakcs: SnackData[]
 }
 export const Snakcs = ({ snakcs }: SnacksProps) => {
   return (

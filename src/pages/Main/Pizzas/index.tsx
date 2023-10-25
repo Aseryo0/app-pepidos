@@ -3,9 +3,10 @@ import { getPizzas } from '../../../services/api'
 import { SnackTitle } from '../../../components/SnackTitle'
 import { Head } from '../../../components/Head'
 import { Snakcs } from '../../../components/Snakcks'
+import { SnackData } from '../../../interfaces/SnackData'
 
 export const Pizzas = () => {
-  const [pizzas, setPizzas] = useState([])
+  const [pizzas, setPizzas] = useState<SnackData[]>([])
 
   useEffect(() => {
     ;(async () => {
