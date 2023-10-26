@@ -1,4 +1,5 @@
 import { CurrencyFormat } from '../../helpers/currencyFormat'
+import { useCart } from '../../hooks/useCart'
 import { SnackData } from '../../interfaces/SnackData'
 import { SkeletonSnack } from './SkeletonSnack'
 import { Container } from './styles'
@@ -6,7 +7,9 @@ import { Container } from './styles'
 interface SnacksProps {
   snakcs: SnackData[]
 }
+
 export const Snakcs = ({ snakcs }: SnacksProps) => {
+  const { addSnackIntoCart } = useCart()
   return (
     <Container>
       {!snakcs.length
@@ -18,7 +21,9 @@ export const Snakcs = ({ snakcs }: SnacksProps) => {
               <p>{snack.description}</p>
               <div>
                 <strong>{CurrencyFormat(snack.price)}</strong>
-                <button type='button'>+</button>
+                <button type='button' onClick={() => addSnackIntoCart(snack)}>
+                  +
+                </button>
               </div>
             </div>
           ))}
