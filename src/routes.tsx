@@ -15,8 +15,8 @@ export function AppRoutes() {
         <Route path='/pizzas' element={<Pizzas />} />
         <Route path='/drinks' element={<Drinks />} />
         <Route path='/ice-creams' element={<IceCreams />} />
-        <Route path='/cart' element={<MyCart />} />
       </Route>
+      <Route path='/cart' element={<MyCart />} />
     </Routes>
   )
 }
