@@ -6,18 +6,13 @@ interface Snack extends SnackData {
   quantity: number
   subTotal: number
 }
-interface removeSnackProps {
-  id: number
-  snack: string
-}
-interface UpdateCartProps {
-  id: number
-  snack: string
-  newQuantity: number
-}
 interface CartContextProps {
   cart: Snack[]
   addSnackIntoCart: (snack: SnackData) => void
+  removeSnackFromCart: (snack: Snack) => void
+  snackIncrement: (snack: Snack) => void
+  snackDecrement: (snack: Snack) => void
+  confirmOrder: () => void
 }
 interface CartProviderProps {
   children: ReactNode
@@ -51,5 +46,36 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCart(newCart)
   }
 
-  return <CartContext.Provider value={{ cart, addSnackIntoCart }}>{children}</CartContext.Provider>
+  function removeSnackFromCart(snack: Snack) {
+    const newCart = cart.filter((item) => !(item.id === snack.id && item.snack === snack.snack))
+    setCart(newCart)
+  }
+  function updateSnack(snack: Snack, newQuantity: number) {
+    return
+  }
+
+  function snackIncrement(snack: Snack) {
+    updateSnack(snack, snack.quantity + 1)
+  }
+
+  function snackDecrement(snack: Snack) {
+    updateSnack(snack, snack.quantity - 1)
+  }
+  function confirmOrder() {
+    return
+  }
+  return (
+    <CartContext.Provider
+      value={{
+        cart,
+        addSnackIntoCart,
+        removeSnackFromCart,
+        snackDecrement,
+        snackIncrement,
+        confirmOrder,
+      }}
+    >
+      {children}
+    </CartContext.Provider>
+  )
 }

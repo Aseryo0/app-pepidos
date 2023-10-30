@@ -39,7 +39,22 @@ export const Container = styled.main`
         font-size: 1.5rem;
       }
 
-      /* quantidade */
+      div {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        button {
+          border: none;
+          background: none;
+          flex: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          img {
+            width: 1.25rem;
+          }
+        }
+      }
 
       h5 {
         font-weight: 700;
@@ -72,7 +87,19 @@ export const Container = styled.main`
         width: 1.5rem;
         padding-right: 0;
 
-        /* ação / deletar */
+        button {
+          border: none;
+          background: none;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-endf;
+          svg {
+            fill: ${({ theme }) => theme.colors.yellow};
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
       }
     }
   }
