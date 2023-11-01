@@ -9,7 +9,7 @@ export const ConfirmOrder = () => {
     <Container>
       <button type='button'>Finalizar Pedido</button>
       <span>
-        Total :<strong>{CurrencyFormat(totalAmount)}</strong>
+        Total: <strong>{CurrencyFormat(totalAmount)}</strong>
       </span>
     </Container>
   )
