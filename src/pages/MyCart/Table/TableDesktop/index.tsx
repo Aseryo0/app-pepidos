@@ -4,9 +4,10 @@ import minusIgm from '../../../../assets/circle-minus.svg'
 import { FaTrashAlt } from 'react-icons/fa'
 import { CurrencyFormat } from '../../../../helpers/currencyFormat'
 import { useCart } from '../../../../hooks/useCart'
+import { ConfirmOrder } from '../../../../components/ConfirmOrder'
 
 export const TableDesktop = () => {
-  const { cart, removeSnackFromCart } = useCart()
+  const { cart, removeSnackFromCart, snackDecrement, snackIncrement } = useCart()
   return (
     <Container>
       <table>
@@ -31,11 +32,11 @@ export const TableDesktop = () => {
               </td>
               <td>
                 <div>
-                  <button type='button' onClick={() => {}}>
+                  <button type='button' onClick={() => snackDecrement(item)}>
                     <img src={minusIgm} alt='icone de remover quantidade de pedido' />
                   </button>
                   <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                  <button type='button' onClick={() => {}}>
+                  <button type='button' onClick={() => snackIncrement(item)}>
                     <img src={plusImg} alt='icone de adicionar pedidos' />
                   </button>
                 </div>
@@ -52,6 +53,7 @@ export const TableDesktop = () => {
           ))}
         </tbody>
       </table>
+      <ConfirmOrder />
     </Container>
   )
 }
