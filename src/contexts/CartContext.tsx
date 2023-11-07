@@ -2,6 +2,7 @@ import { ReactNode, createContext, useState } from 'react'
 import { SnackData } from '../interfaces/SnackData'
 import { toast } from 'react-toastify'
 import { snackEmoji } from '../helpers/snackEmoji'
+import { useNavigate } from 'react-router-dom'
 interface Snack extends SnackData {
   quantity: number
   subTotal: number
@@ -22,6 +23,7 @@ export const CartContext = createContext({} as CartContextProps)
 
 export const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<Snack[]>([])
+  const navigate = useNavigate()
 
   function addSnackIntoCart(snack: SnackData): void {
     const snackExist = cart.find((item) => item.snack === snack.snack && item.id === snack.id)
@@ -76,7 +78,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     updateSnack(snack, snack.quantity - 1)
   }
   function confirmOrder() {
-    return
+    navigate('/payment')
   }
   return (
     <CartContext.Provider

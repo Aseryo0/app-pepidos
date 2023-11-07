@@ -4,14 +4,14 @@ import { CurrencyFormat } from '../../../../helpers/currencyFormat'
 import minusIcon from '../../../../assets/circle-minus.svg'
 import plusIcon from '../../../../assets/circle-plus.svg'
 import { FaTrashAlt } from 'react-icons/fa'
-import { ConfirmOrder } from '../../../../components/ConfirmOrder'
+import { ConfirmOrder } from '../../../../components/OrderActions/ConfirmOrder'
 
 export const TableMobile = () => {
   const { cart, removeSnackFromCart, snackIncrement, snackDecrement } = useCart()
   return (
     <Container>
       {cart.map((item) => (
-        <div key={item.snack} className='order-item'>
+        <div key={`${item.snack}-${item.id}`} className='order-item'>
           <div>
             <img src={item.image} alt={`imagem de um ${item.name}`} />
           </div>

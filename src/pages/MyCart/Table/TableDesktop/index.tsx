@@ -4,7 +4,7 @@ import minusIgm from '../../../../assets/circle-minus.svg'
 import { FaTrashAlt } from 'react-icons/fa'
 import { CurrencyFormat } from '../../../../helpers/currencyFormat'
 import { useCart } from '../../../../hooks/useCart'
-import { ConfirmOrder } from '../../../../components/ConfirmOrder'
+import { ConfirmOrder } from '../../../../components/OrderActions/ConfirmOrder'
 
 export const TableDesktop = () => {
   const { cart, removeSnackFromCart, snackDecrement, snackIncrement } = useCart()
