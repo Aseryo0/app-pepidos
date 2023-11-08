@@ -3,6 +3,7 @@ import { SnackData } from '../interfaces/SnackData'
 import { toast } from 'react-toastify'
 import { snackEmoji } from '../helpers/snackEmoji'
 import { useNavigate } from 'react-router-dom'
+import { CustomerData } from '../interfaces/CustomeData'
 interface Snack extends SnackData {
   quantity: number
   subTotal: number
@@ -14,6 +15,7 @@ interface CartContextProps {
   snackIncrement: (snack: Snack) => void
   snackDecrement: (snack: Snack) => void
   confirmOrder: () => void
+  payOrder: (customer: CustomerData) => void
 }
 interface CartProviderProps {
   children: ReactNode
@@ -80,6 +82,10 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   function confirmOrder() {
     navigate('/payment')
   }
+  function payOrder(customer: CustomerData) {
+    console.log('payment', cart, customer)
+    return
+  }
   return (
     <CartContext.Provider
       value={{
@@ -89,6 +95,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
         snackDecrement,
         snackIncrement,
         confirmOrder,
+        payOrder,
       }}
     >
       {children}

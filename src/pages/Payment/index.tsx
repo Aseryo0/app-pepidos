@@ -7,6 +7,8 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { FieldValues, schema } from './validationSchema'
 import { IMaskInput } from 'react-imask'
 import IMask from 'imask'
+import { useCart } from '../../hooks/useCart'
+import { CustomerData } from '../../interfaces/CustomeData'
 
 export const Payment = () => {
   const {
@@ -17,8 +19,8 @@ export const Payment = () => {
   } = useForm<FieldValues>({
     resolver: yupResolver(schema),
   })
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log('data', data)
-
+  const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
+  const { payOrder } = useCart()
   return (
     <Container>
       <Head title='Pagamento' />
@@ -282,34 +284,14 @@ export const Payment = () => {
                 <p className='error'>{errors.creditCardExpiration.message}</p>
               )}
             </div>
+
             <div className='field'>
               <label htmlFor='creditCardSecurityCode'>Código de segurança (CVV)</label>
               <Controller
-                name='creditCardExpiration'
+                name='creditCardSecurityCode'
                 control={control}
                 render={({ field }) => (
-                  <IMaskInput
-                    type='text'
-                    id='creditCardExpiration'
-                    mask={[
-                      {
-                        mask: 'MM/YY',
-                        blocks: {
-                          MM: {
-                            mask: IMask.MaskedRange,
-                            from: 1,
-                            to: 12,
-                          },
-                          YY: {
-                            mask: IMask.MaskedRange,
-                            from: new Date().getFullYear() - 2000,
-                            to: 99,
-                          },
-                        },
-                      },
-                    ]}
-                    {...field}
-                  />
+                  <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
                 )}
               />
               {errors.creditCardSecurityCode && (
