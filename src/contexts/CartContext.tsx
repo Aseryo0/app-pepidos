@@ -35,6 +35,9 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     setCart(items)
     localStorage.setItem(localStorageKey, JSON.stringify(items))
   }
+  function clearStorageCart() {
+    localStorage.removeItem(localStorageKey)
+  }
   function addSnackIntoCart(snack: SnackData): void {
     const snackExist = cart.find((item) => item.snack === snack.snack && item.id === snack.id)
 
@@ -92,6 +95,7 @@ export const CartProvider = ({ children }: CartProviderProps) => {
   }
   function payOrder(customer: CustomerData) {
     console.log('payment', cart, customer)
+    clearStorageCart()
     return
   }
   return (

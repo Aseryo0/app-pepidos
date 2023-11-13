@@ -13,7 +13,6 @@ import { CustomerData } from '../../interfaces/CustomeData'
 export const Payment = () => {
   const {
     control,
-    register,
     handleSubmit,
     formState: { errors },
   } = useForm<FieldValues>({
@@ -59,8 +58,9 @@ export const Payment = () => {
               <Controller
                 name='mobile'
                 control={control}
-                render={({ field }) => (
+                render={({ field: { ref, ...field } }) => (
                   <IMaskInput
+                    inputRef={ref}
                     type='tel'
                     id='mobile'
                     autoComplete='phone'
@@ -77,8 +77,9 @@ export const Payment = () => {
               <Controller
                 name='document'
                 control={control}
-                render={({ field }) => (
+                render={({ field: { ref, ...field } }) => (
                   <IMaskInput
+                    inputRef={ref}
                     type='text'
                     id='document'
                     mask={[
@@ -100,8 +101,9 @@ export const Payment = () => {
             <Controller
               name='zipCode'
               control={control}
-              render={({ field }) => (
+              render={({ field: { ref, ...field } }) => (
                 <IMaskInput
+                  inputRef={ref}
                   type='text'
                   id='zipCode'
                   style={{ width: '120px' }}
@@ -215,8 +217,9 @@ export const Payment = () => {
             <Controller
               name='creditCardNumber'
               control={control}
-              render={({ field }) => (
+              render={({ field: { ref, ...field } }) => (
                 <IMaskInput
+                  inputRef={ref}
                   type='text'
                   id='creditCardNumber'
                   mask={[
@@ -255,8 +258,9 @@ export const Payment = () => {
               <Controller
                 name='creditCardExpiration'
                 control={control}
-                render={({ field }) => (
+                render={({ field: { ref, ...field } }) => (
                   <IMaskInput
+                    inputRef={ref}
                     type='text'
                     id='creditCardExpiration'
                     mask={[
@@ -290,8 +294,14 @@ export const Payment = () => {
               <Controller
                 name='creditCardSecurityCode'
                 control={control}
-                render={({ field }) => (
-                  <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
+                render={({ field: { ref, ...field } }) => (
+                  <IMaskInput
+                    inputRef={ref}
+                    type='text'
+                    id='creditCardSecurityCode'
+                    mask={'0000'}
+                    {...field}
+                  />
                 )}
               />
               {errors.creditCardSecurityCode && (
