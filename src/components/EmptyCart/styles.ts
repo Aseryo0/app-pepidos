@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -38,6 +39,6 @@ export const Button = styled(Link)`
   transition: background 0.3s;
 
   &:hover {
-    background: #aa2424;
+    background: ${darken(0.1, '#AA2424')};
   }
 `

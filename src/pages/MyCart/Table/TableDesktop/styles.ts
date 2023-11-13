@@ -43,13 +43,16 @@ export const Container = styled.main`
         display: flex;
         align-items: center;
         gap: 0.5rem;
+
         button {
-          border: none;
           background: none;
           flex: 0;
+          border: none;
+
           display: flex;
           align-items: center;
           justify-content: center;
+
           img {
             width: 1.25rem;
           }
@@ -88,12 +91,14 @@ export const Container = styled.main`
         padding-right: 0;
 
         button {
-          border: none;
           background: none;
+          border: none;
           width: 100%;
+
           display: flex;
           align-items: center;
-          justify-content: flex-endf;
+          justify-content: flex-end;
+
           svg {
             fill: ${({ theme }) => theme.colors.yellow};
             width: 1.5rem;

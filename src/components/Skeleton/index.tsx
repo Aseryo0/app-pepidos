@@ -1,9 +1,9 @@
 import { SkeletonElement } from './styles'
 
 export interface SkeletonProps {
-  type: 'title' | 'text' | 'thumbnail' | 'image'
+  type: 'title' | 'text' | 'image' | 'thumbnail'
 }
 
-export const Skeleton = ({ type }: SkeletonProps) => {
+export function Skeleton({ type }: SkeletonProps) {
   return <SkeletonElement type={type} />
 }

@@ -1,15 +1,17 @@
-import { Head } from '../../../components/Head'
-import { SnackTitle } from '../../../components/SnackTitle'
-import { Snakcs } from '../../../components/Snakcks'
-import { useSnack } from '../../../hooks/useSnackContext'
+import { useSnack } from '../../../hooks/useSnack'
 
-export const Drinks = () => {
+import { Head } from '../../../components/Head'
+import { Snacks } from '../../../components/Snacks'
+import { SnackTitle } from '../../../components/SnackTitle'
+
+export default function Drinks() {
   const { drinks } = useSnack()
+
   return (
     <>
-      <Head title={'bebidas'} />
+      <Head title='Bebidas' />
       <SnackTitle>Bebidas</SnackTitle>
-      <Snakcs snakcs={drinks} />
+      <Snacks snacks={drinks}></Snacks>
     </>
   )
 }

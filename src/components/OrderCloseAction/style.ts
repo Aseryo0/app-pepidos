@@ -1,3 +1,4 @@
+import { darken } from 'polished'
 import styled from 'styled-components'
 
 export const Container = styled.footer`
@@ -24,7 +25,7 @@ export const Container = styled.footer`
     transition: background 0.3s;
 
     &:hover {
-      background: '#AA2424';
+      background: ${darken(0.1, '#AA2424')};
     }
   }
 

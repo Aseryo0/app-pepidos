@@ -1,18 +1,21 @@
-import logoImg from '../../assets/logo.svg'
-import { MyOrder } from '../../components/MyOrder'
-import { SideBar } from '../../components/SideBar'
-import { Container } from './styles'
 import { Outlet } from 'react-router-dom'
+
+import { MyOrder } from '../../components/MyOrder'
+import { Sidebar } from '../../components/Sidebar'
+
+import { Container } from './styles'
+
+import logoImg from '../../assets/logo.svg'
 
 export default function Main() {
   return (
     <Container>
-      <SideBar />
+      <Sidebar />
       <section>
-        <img src={logoImg} alt='imagem com logo do site' />
+        <img src={logoImg} />
         <Outlet />
-        <MyOrder />
       </section>
+      <MyOrder />
     </Container>
   )
 }

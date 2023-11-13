@@ -1,6 +1,7 @@
 import { useContext } from 'react'
+
 import { SnackContext } from '../contexts/SnackContext'
 
-export const useSnack = () => {
+export function useSnack() {
   return useContext(SnackContext)
 }

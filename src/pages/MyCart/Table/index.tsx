@@ -1,24 +1,27 @@
 import { useEffect, useState } from 'react'
+import { EmptyCart } from '../../../components/EmptyCart'
 import { useCart } from '../../../hooks/useCart'
+
 import { TableDesktop } from './TableDesktop'
 import { TableMobile } from './TableMobile'
-import { EmptyCart } from '../../../components/EmptyCart'
 
-export const Table = () => {
-  const [windowWidth, setwindowWidth] = useState(document.documentElement.clientWidth)
+export function Table() {
+  const { cart } = useCart()
+  const [windowWidth, setWindowWidth] = useState(document.documentElement.clientWidth)
 
   useEffect(() => {
-    function updateTable() {
+    function updateTableComponentBasedInWindowWidth() {
       const currentWidth = document.documentElement.clientWidth
-
-      setwindowWidth(currentWidth)
-      window.addEventListener('resize', updateTable)
-      return () => window.removeEventListener('resize', updateTable)
+      setWindowWidth(currentWidth)
     }
-    updateTable()
+    window.addEventListener('resize', updateTableComponentBasedInWindowWidth)
+
+    return () => {
+      window.removeEventListener('resize', updateTableComponentBasedInWindowWidth)
+    }
   }, [])
 
-  const { cart } = useCart()
-  if (cart.length === 0) return <EmptyCart title={'Oops! Parece que você não tem pedidos'} />
+  if (cart.length === 0) return <EmptyCart title='Ops! Parece que você não tem pedidos, peça já!' />
+
   return windowWidth > 768 ? <TableDesktop /> : <TableMobile />
 }

@@ -1,5 +1,5 @@
-export const snackEmoji = (name: string) => {
-  switch (name.toLocaleLowerCase()) {
+export function snackEmoji(name: string) {
+  switch (name.toLowerCase()) {
     case 'burger':
       return '🍔'
     case 'pizza':
@@ -7,8 +7,8 @@ export const snackEmoji = (name: string) => {
     case 'drink':
       return '🥤'
     case 'ice-cream':
-      return '🍦'
+      return '🍨'
     default:
-      return '👦🔍'
+      return '🧑‍🍳'
   }
 }

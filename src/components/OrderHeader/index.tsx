@@ -1,21 +1,25 @@
 import { Link } from 'react-router-dom'
-import LogoImg from '../../assets/logo.svg'
-import { Container } from './styles'
-import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg'
+
 import { useCart } from '../../hooks/useCart'
 
-export const OrderHeader = () => {
+import { Container } from './styles'
+
+import logoImg from '../../assets/logo.svg'
+import { ReactComponent as CartIcon } from '../../assets/shopping-cart.svg'
+
+export function OrderHeader() {
   const { cart } = useCart()
+
   return (
     <Container>
       <Link to='/'>
-        <img src={LogoImg} alt='logo do site' />
+        <img src={logoImg} alt='Food Commerce' />
       </Link>
       <div>
         <div>
           <h3>Meus pedidos</h3>
           <span>
-            <strong>{`${cart.length}`.padStart(2, '0')}</strong> pedido(s)
+            <strong>{`${cart.length}`.padStart(2, '0')}</strong> lanche(s)
           </span>
         </div>
         <CartIcon />

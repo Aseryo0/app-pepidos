@@ -6,6 +6,7 @@ interface ContainerProps {
 
 export const Container = styled.aside<ContainerProps>`
   background-color: ${({ theme }) => theme.colors.red};
+
   ${({ isMenuOpen }) =>
     isMenuOpen
       ? css`
@@ -13,13 +14,15 @@ export const Container = styled.aside<ContainerProps>`
         `
       : css`
           width: 7.75rem;
-        `};
+        `}
+
+  padding: 2rem 0;
+  overflow: hidden;
 
   display: flex;
-  align-items: center;
   flex-direction: column;
-  overflow: hidden;
-  padding: 2rem 0;
+  align-items: center;
+
   transition: width 0.3s;
 
   button {
@@ -99,34 +102,42 @@ export const Container = styled.aside<ContainerProps>`
     right: 0;
     bottom: 0;
     z-index: 999;
+
     width: 100%;
     height: 5rem;
-    padding: 0;
-    overflow: auto;
+    overflow-y: auto;
+    padding: 0 0;
+
     button {
       display: none;
     }
+
     nav {
       height: 100%;
+
       ul {
         flex-direction: row;
         align-items: center;
       }
+
       li {
         a {
           flex-direction: column;
-          padding: 0;
-        }
-        svg {
-          width: 2.25rem;
-          height: 3.25em;
-        }
-        span {
-          display: none;
-        }
-        &:active {
-          &:after {
+          padding: 0rem;
+
+          svg {
+            width: 3.25rem;
+            height: 3.25rem;
+          }
+
+          span {
             display: none;
+          }
+
+          &.active {
+            &::after {
+              display: none;
+            }
           }
         }
       }

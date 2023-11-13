@@ -1,31 +1,36 @@
-import { Container } from './styles'
-import { useCart } from '../../../../hooks/useCart'
-import { CurrencyFormat } from '../../../../helpers/currencyFormat'
-import minusIcon from '../../../../assets/circle-minus.svg'
-import plusIcon from '../../../../assets/circle-plus.svg'
 import { FaTrashAlt } from 'react-icons/fa'
-import { ConfirmOrder } from '../../../../components/OrderActions/ConfirmOrder'
+import { useCart } from '../../../../hooks/useCart'
 
-export const TableMobile = () => {
-  const { cart, removeSnackFromCart, snackIncrement, snackDecrement } = useCart()
+import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
+
+import { currencyFormat } from '../../../../helpers/currencyFormat'
+
+import minusImg from '../../../../assets/circle-minus.svg'
+import plusImg from '../../../../assets/circle-plus.svg'
+
+import { Container } from './style'
+
+export function TableMobile() {
+  const { cart, removeSnackFromCart, snackCartIncrement, snackCartDecrement } = useCart()
+
   return (
     <Container>
       {cart.map((item) => (
         <div key={`${item.snack}-${item.id}`} className='order-item'>
           <div>
-            <img src={item.image} alt={`imagem de um ${item.name}`} />
+            <img src={item.image} alt={item.name} />
           </div>
           <div>
             <h4>{item.name}</h4>
-            <span>{CurrencyFormat(item.price)}</span>
+            <span>{currencyFormat(item.price)}</span>
             <div>
               <div>
-                <button type='button' onClick={() => snackDecrement(item)}>
-                  <img src={minusIcon} alt='icone de diminuir pedido' />
+                <button type='button' onClick={() => snackCartDecrement(item)}>
+                  <img src={minusImg} alt='Remover quantidade' />
                 </button>
                 <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                <button type='button' onClick={() => snackIncrement(item)}>
-                  <img src={plusIcon} alt='icone de aumentar pedido' />
+                <button type='button' onClick={() => snackCartIncrement(item)}>
+                  <img src={plusImg} alt='Adicionar quantidade' />
                 </button>
               </div>
               <button type='button' onClick={() => removeSnackFromCart(item)}>
@@ -33,11 +38,12 @@ export const TableMobile = () => {
               </button>
             </div>
             <h5>
-              <span>Subtotal</span> {CurrencyFormat(item.subTotal)}
+              <span>Subtotal</span> {currencyFormat(item.subtotal)}
             </h5>
           </div>
         </div>
       ))}
+
       <ConfirmOrder />
     </Container>
   )

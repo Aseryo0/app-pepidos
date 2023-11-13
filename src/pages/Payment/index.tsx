@@ -1,16 +1,22 @@
-import { Container, Form, Inner } from './styles'
-import { Head } from '../../components/Head'
-import { OrderHeader } from '../../components/OderHeader'
-import { PayOrder } from '../../components/OrderActions/PayOrder'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { FieldValues, schema } from './validationSchema'
 import { IMaskInput } from 'react-imask'
-import IMask from 'imask'
-import { useCart } from '../../hooks/useCart'
-import { CustomerData } from '../../interfaces/CustomeData'
 
-export const Payment = () => {
+import { CustomerData } from '../../interfaces/CustomerData'
+
+import { Head } from '../../components/Head'
+import { PayOrder } from '../../components/OrderCloseAction/PayOrder'
+import { OrderHeader } from '../../components/OrderHeader'
+
+import { useCart } from '../../hooks/useCart'
+
+import { FieldValues, schema } from './validationSchema'
+
+import IMask from 'imask'
+import { Container, Form, Inner } from './styles'
+
+export default function Payment() {
+  const { payOrder } = useCart()
   const {
     control,
     handleSubmit,
@@ -19,7 +25,7 @@ export const Payment = () => {
     resolver: yupResolver(schema),
   })
   const onSubmit: SubmitHandler<FieldValues> = (data) => payOrder(data as CustomerData)
-  const { payOrder } = useCart()
+
   return (
     <Container>
       <Head title='Pagamento' />
@@ -58,9 +64,8 @@ export const Payment = () => {
               <Controller
                 name='mobile'
                 control={control}
-                render={({ field: { ref, ...field } }) => (
+                render={({ field }) => (
                   <IMaskInput
-                    inputRef={ref}
                     type='tel'
                     id='mobile'
                     autoComplete='phone'
@@ -77,9 +82,8 @@ export const Payment = () => {
               <Controller
                 name='document'
                 control={control}
-                render={({ field: { ref, ...field } }) => (
+                render={({ field }) => (
                   <IMaskInput
-                    inputRef={ref}
                     type='text'
                     id='document'
                     mask={[
@@ -101,9 +105,8 @@ export const Payment = () => {
             <Controller
               name='zipCode'
               control={control}
-              render={({ field: { ref, ...field } }) => (
+              render={({ field }) => (
                 <IMaskInput
-                  inputRef={ref}
                   type='text'
                   id='zipCode'
                   style={{ width: '120px' }}
@@ -217,9 +220,8 @@ export const Payment = () => {
             <Controller
               name='creditCardNumber'
               control={control}
-              render={({ field: { ref, ...field } }) => (
+              render={({ field }) => (
                 <IMaskInput
-                  inputRef={ref}
                   type='text'
                   id='creditCardNumber'
                   mask={[
@@ -258,9 +260,8 @@ export const Payment = () => {
               <Controller
                 name='creditCardExpiration'
                 control={control}
-                render={({ field: { ref, ...field } }) => (
+                render={({ field }) => (
                   <IMaskInput
-                    inputRef={ref}
                     type='text'
                     id='creditCardExpiration'
                     mask={[
@@ -294,14 +295,8 @@ export const Payment = () => {
               <Controller
                 name='creditCardSecurityCode'
                 control={control}
-                render={({ field: { ref, ...field } }) => (
-                  <IMaskInput
-                    inputRef={ref}
-                    type='text'
-                    id='creditCardSecurityCode'
-                    mask={'0000'}
-                    {...field}
-                  />
+                render={({ field }) => (
+                  <IMaskInput type='text' id='creditCardSecurityCode' mask={'0000'} {...field} />
                 )}
               />
               {errors.creditCardSecurityCode && (

@@ -1,45 +1,49 @@
-import { Container } from './style'
 import { useState } from 'react'
-import { ReactComponent as BurguerIcon } from '../../assets/burger.svg'
-import { ReactComponent as PizzaIcon } from '../../assets/pizza.svg'
-import { ReactComponent as SodaIcon } from '../../assets/soda.svg'
-import { ReactComponent as IceCreamIcon } from '../../assets/ice-cream.svg'
-import menuImg from '../../assets/menu.svg'
 import { NavLink } from 'react-router-dom'
 
-export const SideBar = () => {
-  const [menuStatus, setMenuStatus] = useState(false)
+import { Container } from './styles'
 
-  const handleOpenMenu = () => {
-    setMenuStatus(!menuStatus)
+import { ReactComponent as BurgerIcon } from '../../assets/burger.svg'
+import { ReactComponent as PizzaIcon } from '../../assets/pizza.svg'
+import { ReactComponent as SodaPopIcon } from '../../assets/soda.svg'
+import { ReactComponent as IceCreamIcon } from '../../assets/ice-cream.svg'
+
+import menuImg from '../../assets/menu.svg'
+
+export function Sidebar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  const handleToggleMenu = () => {
+    setMenuOpen(!menuOpen)
   }
+
   return (
-    <Container isMenuOpen={menuStatus}>
-      <button type='button' onClick={handleOpenMenu}>
-        <img src={menuImg} alt='botao de abrir e fechar menu' />
+    <Container isMenuOpen={menuOpen}>
+      <button type='button' onClick={handleToggleMenu}>
+        <img src={menuImg} alt='Abrir e fechar o menu' />
       </button>
       <nav>
         <ul>
           <li>
             <NavLink to='/'>
-              <BurguerIcon />
-              <span>Hamburguer</span>
+              <BurgerIcon />
+              <span>Hambúrgueres</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='/pizzas'>
+            <NavLink to='pizzas'>
               <PizzaIcon />
               <span>Pizzas</span>
             </NavLink>
           </li>
           <li>
             <NavLink to='drinks'>
-              <SodaIcon />
+              <SodaPopIcon />
               <span>Bebidas</span>
             </NavLink>
           </li>
           <li>
-            <NavLink to='/ice-creams'>
+            <NavLink to='ice-creams'>
               <IceCreamIcon />
               <span>Sorvetes</span>
             </NavLink>

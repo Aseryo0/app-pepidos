@@ -1,13 +1,18 @@
-import { Container } from './styles'
-import plusImg from '../../../../assets/circle-plus.svg'
-import minusIgm from '../../../../assets/circle-minus.svg'
 import { FaTrashAlt } from 'react-icons/fa'
-import { CurrencyFormat } from '../../../../helpers/currencyFormat'
 import { useCart } from '../../../../hooks/useCart'
-import { ConfirmOrder } from '../../../../components/OrderActions/ConfirmOrder'
 
-export const TableDesktop = () => {
-  const { cart, removeSnackFromCart, snackDecrement, snackIncrement } = useCart()
+import { ConfirmOrder } from '../../../../components/OrderCloseAction/ConfirmOrder'
+
+import { currencyFormat } from '../../../../helpers/currencyFormat'
+
+import minusImg from '../../../../assets/circle-minus.svg'
+import plusImg from '../../../../assets/circle-plus.svg'
+
+import { Container } from './styles'
+
+export function TableDesktop() {
+  const { cart, removeSnackFromCart, snackCartIncrement, snackCartDecrement } = useCart()
+
   return (
     <Container>
       <table>
@@ -24,25 +29,25 @@ export const TableDesktop = () => {
           {cart.map((item) => (
             <tr key={`${item.snack}-${item.id}`}>
               <td>
-                <img src={item.image} alt={item.description} />
+                <img src={item.image} alt={item.name} />
               </td>
               <td>
                 <h4>{item.name}</h4>
-                <span>{CurrencyFormat(item.price)}</span>
+                <span>{currencyFormat(item.price)}</span>
               </td>
               <td>
                 <div>
-                  <button type='button' onClick={() => snackDecrement(item)}>
-                    <img src={minusIgm} alt='icone de remover quantidade de pedido' />
+                  <button type='button' onClick={() => snackCartDecrement(item)}>
+                    <img src={minusImg} alt='Remover quantidade' />
                   </button>
                   <span>{`${item.quantity}`.padStart(2, '0')}</span>
-                  <button type='button' onClick={() => snackIncrement(item)}>
-                    <img src={plusImg} alt='icone de adicionar pedidos' />
+                  <button type='button' onClick={() => snackCartIncrement(item)}>
+                    <img src={plusImg} alt='Adicionar quantidade' />
                   </button>
                 </div>
               </td>
               <td>
-                <h5>{CurrencyFormat(item.subTotal)}</h5>
+                <h5>{currencyFormat(item.subtotal)}</h5>
               </td>
               <td>
                 <button type='button' onClick={() => removeSnackFromCart(item)}>
